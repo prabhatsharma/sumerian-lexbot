@@ -1,0 +1,1 @@
+aws s3 cp index.html s3://sumerianfaq.prabhatsharma.com --acl=public-read

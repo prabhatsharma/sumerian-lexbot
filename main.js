@@ -20,4 +20,6 @@ const event = {
     "sessionAttributes": {}
   }
 
-lambda.handler(event)
+lambda.handler(event).then((data)=>{
+    console.log(data)
+})

@@ -12,10 +12,10 @@ workbook.xlsx.readFile(filename)
     .then(function () {
         const worksheet = workbook.getWorksheet('Sheet1');
         const data = worksheet.getSheetValues();
-        const columns = [data[1][1], data[1][2], data[1][3], data[1][4], data[1][5], data[1][6]]
+        const columns = [data[1][1], data[1][2], data[1][3], data[1][4], data[1][5], data[1][6], data[1][7]]
 
         // console.log(columns)
-        for (var i = 2; i <= 25; i++) {
+        for (var i = 2; i <= 100; i++) {
             var item = {
                 "id": data[i][1],
                 "intent": data[i][2],
@@ -23,6 +23,7 @@ workbook.xlsx.readFile(filename)
                 "slotvalue": data[i][4],
                 "question": data[i][5],
                 "answer": data[i][6],
+                "slidetext": data[i][7],
             }
             var params = {
                 TableName: "sumerianfaq",
@@ -35,7 +36,7 @@ workbook.xlsx.readFile(filename)
                 if (error) {
                     console.log("Error occured: ", error)
                 } else {
-                    //console.log("Stored successfully: ", item)
+                    console.log("Stored successfully: ", data)
                 }
             })
         }

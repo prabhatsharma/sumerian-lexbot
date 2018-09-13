@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <script>
+        fetch('https://53uhbd2jsc.execute-api.us-west-2.amazonaws.com/dev/lexdb/13')
+            .then((response) => {
+                response.json().then((data)=>{
+                    console.log(data)
+                    document.getElementById('div1').innerHTML = data.message
+                })
+            })
+    </script>
+</head>
+
+<body>
+
+    <div id="div1">
+
+    </div>
+
+        <!-- Similarities in feature sets but serve different customer types\r\n<img src="https://i.imgur.com/qH184QN.png\" > -->
+
+</body>
+
+</html>

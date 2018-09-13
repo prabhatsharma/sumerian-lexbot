@@ -21,15 +21,28 @@ exports.handler = (event) => {
         },
     };
 
-    docClient.scan(params, (err, data) => {
-        console.log(data)
-        return data
-        // return new Promise((resolve, reject) => {
-        //     if(err){
-        //         reject(err)
-        //     } else {
-        //         resolve(data)
-        //     }  
-        // })
-    });
+    var response = {
+        "sessionAttributes": {},
+        "dialogAction": {
+            "type": "Close",
+            "fulfillmentState": "Fulfilled",
+            "message": {
+                "contentType": "PlainText",
+                "content": "Could not find values in dynamodb for intent: " + intent + ", slot: " + slotname + ', slotvalue: ' + slotvalue
+            }
+        }
+    }
+
+    return new Promise((resolve, reject) => {
+        docClient.scan(params, (err, data) => {
+            if (err) {
+                console.log(err)
+                response.dialogAction.message.content = err
+            } else if(data.Count !== 0){
+                console.log(data)
+                response.dialogAction.message.content = data.Items[0].answer
+            }
+            resolve(response)
+        });
+    })
 };
